@@ -244,13 +244,6 @@ img.asset-missing {
   background-size: 86% auto;
 }
 
-.mini-card.has-fallback[data-fallback='underside']::before {
-  background-image:
-    radial-gradient(circle at 50% 32%, rgba(255,255,255,0.95) 0 16%, rgba(205,214,226,0.72) 16% 27%, rgba(100,110,125,0.45) 27% 29%, transparent 29%),
-    radial-gradient(circle at 50% 78%, rgba(236,240,246,0.95) 0 18%, rgba(165,172,183,0.5) 18% 24%, transparent 24%);
-  background-size: 74% auto;
-}
-
 .sheet-card.has-fallback[data-fallback='sheet']::before,
 .sheet-card.has-fallback[data-fallback='detail']::before,
 .sheet-card.has-fallback[data-fallback='profile']::before {
@@ -382,45 +375,18 @@ img.asset-missing {
   padding: 0 18px 0 4px;
 }
 
-.reference-renders {
+.single-sheet-card {
   border: 1px solid #000;
-  border-bottom: none;
-  padding: 16px 14px 0;
-}
-
-.mini-card.two-up {
-  height: 180px;
-  border: none;
-}
-
-.mini-card.single-large {
-  height: 180px;
-  border: none;
-}
-
-.reference-sheet {
-  border: 1px solid #000;
-  border-top: none;
-  padding: 12px 14px 14px;
+  padding: 14px;
+  background: #fff;
 }
 
 .sheet-card {
   background: #fff;
 }
 
-.large-sheet {
-  height: 104px;
-}
-
-.sheet-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.small-sheet {
-  height: 64px;
+.full-sheet {
+  min-height: 360px;
 }
 
 .spec-link {
