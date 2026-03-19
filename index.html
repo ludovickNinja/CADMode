@@ -51,14 +51,14 @@
           <div class="gallery-layout">
             <div class="thumb-strip">
               <figure class="thumb-card">
-                <img src="assets/585361218_202631.14.51.23_rendering_2 (1).jpg" alt="Top view of ring" data-fallback="top" />
+                <img src="assets/585361218_202631.14.51.23_rendering_2 (1).jpg" alt="Top view of ring" data-fallback="top" data-expandable="true" tabindex="0" role="button" aria-label="Open top view of ring full screen" />
               </figure>
               <figure class="thumb-card">
-                <img src="assets/585361218_202631.14.51.23_rendering_2.jpg" alt="Side view of ring" data-fallback="side" />
+                <img src="assets/585361218_202631.14.51.23_rendering_2.jpg" alt="Side view of ring" data-fallback="side" data-expandable="true" tabindex="0" role="button" aria-label="Open side view of ring full screen" />
               </figure>
             </div>
             <figure class="hero-card">
-              <img src="assets/585361218_202631.14.51.23_rendering_5.jpg" alt="Main ring render" data-fallback="hero" />
+              <img src="assets/585361218_202631.14.51.23_rendering_5.jpg" alt="Main ring render" data-fallback="hero" data-expandable="true" tabindex="0" role="button" aria-label="Open main ring render full screen" />
             </figure>
           </div>
         </section>
@@ -104,7 +104,7 @@
           <h2>Master or Factory Provided</h2>
           <div class="reference-card single-sheet-card">
             <figure class="sheet-card full-sheet">
-              <img src="assets/SpecSheet.jpg" alt="Master or factory provided spec sheet" data-fallback="sheet" />
+              <img src="assets/SpecSheet.jpg" alt="Master or factory provided spec sheet" data-fallback="sheet" data-expandable="true" tabindex="0" role="button" aria-label="Open spec sheet full screen" />
             </figure>
           </div>
           <a class="spec-link" href="#">Overwrite Spec Sheet for Job-Bag</a>
@@ -165,6 +165,13 @@
         <button class="save-btn" type="button">SAVE</button>
         <button class="close-btn" type="button">Close</button>
       </footer>
+    </div>
+
+    <div class="image-lightbox" id="imageLightbox" hidden aria-hidden="true">
+      <div class="image-lightbox__backdrop" data-lightbox-close="true"></div>
+      <figure class="image-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Expanded image preview">
+        <img class="image-lightbox__image" id="lightboxImage" alt="" />
+      </figure>
     </div>
 
     <script src="script.js"></script>
