@@ -53,3 +53,62 @@ const applyImageFallbacks = () => {
 updateClock();
 applyImageFallbacks();
 setInterval(updateClock, 1000);
+
+
+const setupImageLightbox = () => {
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const expandableImages = document.querySelectorAll('img[data-expandable="true"]');
+
+  if (!lightbox || !lightboxImage || !expandableImages.length) {
+    return;
+  }
+
+  let activeTrigger = null;
+
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.removeAttribute('src');
+    lightboxImage.alt = '';
+    document.body.classList.remove('lightbox-open');
+
+    if (activeTrigger) {
+      activeTrigger.focus();
+      activeTrigger = null;
+    }
+  };
+
+  const openLightbox = (img) => {
+    activeTrigger = img;
+    lightboxImage.src = img.currentSrc || img.src;
+    lightboxImage.alt = img.alt;
+    lightbox.hidden = false;
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+  };
+
+  expandableImages.forEach((img) => {
+    img.addEventListener('click', () => openLightbox(img));
+    img.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
+  });
+
+  lightbox.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLElement && event.target.dataset.lightboxClose === 'true') {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+};
+
+setupImageLightbox();
