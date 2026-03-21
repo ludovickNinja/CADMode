@@ -409,18 +409,63 @@ img.asset-missing {
   overflow-x: auto;
 }
 
+
+.table-card {
+  border: 1px solid var(--light-border);
+  background: #fff;
+}
+
+.table-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px 10px;
+}
+
+.table-card__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.table-caption {
+  color: #b91c1c;
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+
+.table-edit-status {
+  color: #4b5563;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.table-edit-btn,
+.print-btn {
+  border: 1px solid var(--navy);
+  background: #fff;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.table-edit-btn {
+  min-width: 132px;
+  min-height: 34px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.table-edit-btn.is-editing {
+  background: var(--navy);
+  color: #fff;
+}
+
 .table-wrap table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.7rem;
-}
-
-.table-wrap caption {
-  caption-side: top;
-  text-align: left;
-  color: #b91c1c;
-  font-weight: 700;
-  margin-bottom: 2px;
 }
 
 .table-wrap th,
@@ -443,6 +488,22 @@ img.asset-missing {
   font-weight: 600;
 }
 
+.table-wrap.is-editing tbody td,
+.table-wrap.is-editing tfoot td {
+  background: #fffceb;
+}
+
+.table-wrap td[contenteditable='true'] {
+  cursor: text;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
+.table-wrap td[contenteditable='true']:focus {
+  outline-color: var(--teal);
+  background: #ffffff;
+}
+
 .table-wrap tfoot td {
   border-top: none;
   font-weight: 700;
@@ -460,10 +521,15 @@ img.asset-missing {
 
 .action-bar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
+  justify-content: center;
   padding: 42px 0 44px;
+}
+
+.action-bar__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
 }
 
 .action-bar button {
@@ -478,6 +544,10 @@ img.asset-missing {
 .save-btn {
   background: #9b9b9b;
   color: #fff;
+}
+
+.print-btn {
+  background: #fff;
 }
 
 .close-btn {
@@ -524,6 +594,11 @@ img.asset-missing {
 
   .gallery-layout {
     grid-template-columns: 1fr;
+  }
+
+  .table-card__header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .thumb-strip {

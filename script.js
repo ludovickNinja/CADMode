@@ -50,11 +50,6 @@ const applyImageFallbacks = () => {
   });
 };
 
-updateClock();
-applyImageFallbacks();
-setInterval(updateClock, 1000);
-
-
 const setupImageLightbox = () => {
   const lightbox = document.getElementById('imageLightbox');
   const lightboxImage = document.getElementById('lightboxImage');
@@ -111,4 +106,73 @@ const setupImageLightbox = () => {
   });
 };
 
+const setupDiamondBreakdownEditor = () => {
+  const table = document.getElementById('diamondBreakdownTable');
+  const editButton = document.getElementById('tableEditBtn');
+  const status = document.getElementById('tableEditStatus');
+  const tableWrap = table?.closest('.table-wrap');
+
+  if (!table || !editButton || !status || !tableWrap) {
+    return;
+  }
+
+  const editableCells = table.querySelectorAll('tbody td, tfoot td');
+  let isEditing = false;
+
+  const updateEditState = () => {
+    editableCells.forEach((cell) => {
+      cell.contentEditable = isEditing ? 'true' : 'false';
+      cell.spellcheck = false;
+      if (isEditing) {
+        cell.setAttribute('tabindex', '0');
+      } else {
+        cell.removeAttribute('tabindex');
+      }
+    });
+
+    tableWrap.classList.toggle('is-editing', isEditing);
+    editButton.classList.toggle('is-editing', isEditing);
+    editButton.setAttribute('aria-pressed', String(isEditing));
+    editButton.textContent = isEditing ? 'Finish Editing' : 'Edit Breakdown';
+    status.textContent = isEditing ? 'Editing enabled — click any value to update it' : 'Read-only mode';
+  };
+
+  editButton.addEventListener('click', () => {
+    isEditing = !isEditing;
+    updateEditState();
+
+    if (isEditing) {
+      editableCells[0]?.focus();
+    }
+  });
+
+  editableCells.forEach((cell) => {
+    cell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        cell.blur();
+      }
+    });
+  });
+
+  updateEditState();
+};
+
+const setupPrintJobBagButton = () => {
+  const printButton = document.getElementById('printJobBagBtn');
+
+  if (!printButton) {
+    return;
+  }
+
+  printButton.addEventListener('click', () => {
+    window.print();
+  });
+};
+
+updateClock();
+applyImageFallbacks();
 setupImageLightbox();
+setupDiamondBreakdownEditor();
+setupPrintJobBagButton();
+setInterval(updateClock, 1000);
